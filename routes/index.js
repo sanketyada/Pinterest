@@ -28,7 +28,9 @@ router.post("/uploads", upload.single("pic"), isLoggedIn, async (req, res) => {
   await findUser.save();
   res.redirect("/profile");
 });
-
+router.get("/index",(req,res)=>{
+  res.render("index")
+})
 router.get("/profile", isLoggedIn, async (req, res) => {
   const user = await userModel
     .findOne({ username: req.session.passport.user })

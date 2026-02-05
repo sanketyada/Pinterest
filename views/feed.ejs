@@ -1,14 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include('partials/header', { title: 'Home Pageree' , cssFile: 'feed.css' }) %>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="stylesheets/feed.css">
-    <title>Document</title>
-</head>
-
-<body>
     <nav>
         <div class="logo">
             <h5>LOGO</h5>
@@ -35,7 +26,8 @@
 
         <div class="box">
             <a href="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600">
-                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600" alt="Mountain landscape"></a>
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600"
+                    alt="Mountain landscape"></a>
             <div class="caption">Mountain Serenity</div>
         </div>
 
@@ -208,7 +200,8 @@
 
         <div class="box">
             <a href="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600">
-                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600" alt="Landscape beauty"></a>
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600"
+                    alt="Landscape beauty"></a>
             <div class="caption">Landscape Beauty</div>
         </div>
 
@@ -216,7 +209,4 @@
 
         <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
         <script src="app.js"></script>
-</body>
-
-
-</html>
+        <%- include('partials/footer') %>
