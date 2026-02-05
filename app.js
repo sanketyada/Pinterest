@@ -6,6 +6,7 @@ const connectDB = require("./config/db")
 connectDB()
 const session = require("express-session")
 const passport = require("passport")
+const flash = require("connect-flash")
 
 //models setup
 const userModel = require("./models/user.model")
@@ -18,6 +19,8 @@ var usersRouter = require('./routes/users');
 var app = express();
 
 app.set("view engine","ejs")
+
+app.use(flash())
 //express-Session Setup
 app.use(session({
     resave:false,
