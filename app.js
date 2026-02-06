@@ -1,3 +1,4 @@
+require('dotenv').config()
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
@@ -7,6 +8,7 @@ connectDB()
 const session = require("express-session")
 const passport = require("passport")
 const flash = require("connect-flash")
+require('dotenv').config()
 
 //models setup
 const userModel = require("./models/user.model")

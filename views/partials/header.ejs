@@ -1,8 +1,54 @@
 <!doctype html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-  </head>
-  <body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body>
+  <%if(nav===true){%>
+    <header class="w-full bg-white shadow-sm">
+      <nav class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+
+        <!-- Left: Logo + Feed -->
+        <div class="flex items-center gap-6">
+          <!-- Pinterest Logo -->
+          <a href="/feed" class="flex items-center gap-2">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Pinterest-logo.png" alt="Pinterest"
+              class="h-8 w-8" />
+            <span class="font-bold text-lg">Pinterest</span>
+          </a>
+
+        </div>
+
+        <!-- Right: Profile + Logout -->
+        <div class="flex items-center gap-4">
+      <!-- Profile -->
+      <a href="/profile" class="flex items-center gap-2">
+        <img
+          src="<%= user.dp %>"
+          alt="Profile"
+          class="h-9 w-9 rounded-full"
+        />
+        <span class="text-sm font-medium hidden sm:block">Profile</span>
+      </a>
+          <!-- Feed -->
+          <a href="/feed" class="text-sm font-semibold px-3 py-2 rounded-full hover:bg-gray-100">
+            Feed
+          </a>
+
+
+          <!-- Logout Button -->
+          <form action="/logout" method="get">
+            <button type="submit"
+              class="bg-red-600 text-white text-sm font-semibold px-4 py-2 rounded-full hover:bg-red-700 transition">
+              Logout
+            </button>
+          </form>
+        </div>
+
+      </nav>
+    </header>
+    <%}%>

@@ -1,0 +1,44 @@
+<%- include('partials/header') %>
+
+<div class="max-w-6xl mx-auto px-4 py-6">
+
+  <!-- Masonry Grid -->
+  <div class="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-6">
+
+    <% user.posts.forEach((item) => { %>
+      <div class="mb-6 break-inside-avoid">
+
+        <!-- Pin Card -->
+        <div class="bg-white rounded-2xl shadow hover:shadow-xl transition duration-300 overflow-hidden">
+
+          <!-- Image -->
+          <a href="/show/pins/<%= item._id %>">
+            <img 
+              src="<%= item.image %>" 
+              alt="Post Image"
+              class="w-full object-cover hover:scale-105 transition duration-300"
+            />
+          </a>
+
+          <!-- Text -->
+          <div class="p-4">
+            <h5 class="text-sm font-semibold text-gray-900 truncate text-center">
+              <%= item.postText %>
+            </h5>
+
+            <% if(item.description){ %>
+              <p class="text-xs text-gray-600 mt-1 text-center line-clamp-2">
+                <%= item.description %>
+              </p>
+            <% } %>
+          </div>
+
+        </div>
+
+      </div>
+    <% }) %>
+
+  </div>
+</div>
+
+<%- include('partials/footer') %>

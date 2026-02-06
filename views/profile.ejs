@@ -1,77 +1,81 @@
-<%- include('partials/header', { title: 'Home Pageree' , cssFile: 'profile.css' }) %>
-  <!-- PROFILE SECTION -->
-  <div class="min-h-screen bg-gray-100 py-10">
-    <form id="uploadForm" hidden action="/changeDp" method="post" enctype="multipart/form-data">
-      <input type="file" name="dp" id="fileInput">
-    </form>
-    <div class="max-w-5xl mx-auto px-4">
+<%- include('partials/header', { title: 'Profile', cssFile: 'profile.css' }) %>
 
-      <!-- Profile Card -->
-      <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center mb-10">
+<div class="min-h-screen bg-gray-100 py-10">
 
-        <div class="w-32 h-32 rounded-full overflow-hidden border-4 border-red-500 mb-4">
-          <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=600" alt="Profile Picture"
-            class="w-full h-full object-cover" />
+  <!-- Hidden DP Upload Form -->
+  <form id="uploadForm" hidden action="/changeDp" method="post" enctype="multipart/form-data">
+    <input type="file" name="dp" id="fileInput">
+  </form>
+
+  <div class="max-w-5xl mx-auto px-4">
+
+    <!-- PROFILE HEADER -->
+    <div class="bg-white rounded-3xl shadow-lg p-8 flex flex-col items-center mb-10">
+
+      <!-- DP -->
+      <div class="relative">
+        <div class="w-32 h-32 rounded-full overflow-hidden border-4 border-red-500">
+          <img src="<%= user.dp %>" alt="Profile Picture" class="w-full h-full object-cover" />
         </div>
-        <!-- 
-        //Dp changeDp -->
 
-<p id="para" class="cursor-pointer">Some text here</p>
-
-          <h3 class="text-gray-500 mb-1">
-            @<%= user.username %>
-          </h3>
-
-          <p class="text-sm text-gray-600">
-            <%= user.email %>
-          </p>
-
-          <p class="text-sm text-gray-700 mt-2">
-            <%= user.username %>
-          </p>
-
-          <a href="/logout" class="mt-4 bg-red-600 text-white px-6 py-2 rounded-full hover:bg-red-700 transition">
-            Logout
-          </a>
+        <!-- Change DP -->
+        <button id="para"
+          class="absolute bottom-0 right-0 bg-white border text-xs px-3 py-1 rounded-full shadow hover:bg-gray-100">
+          Change
+        </button>
       </div>
 
-      <!-- UPLOAD FORM -->
-      <div class="bg-white rounded-xl shadow-md p-6 mb-10">
-        <form action="/uploads" method="post" enctype="multipart/form-data" class="space-y-4">
-          <input type="text" name="caption" placeholder="Write a caption..."
-            class="w-full border px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500" />
+      <!-- Info -->
+      <h2 class="text-xl font-semibold mt-4">
+        <%= user.fullName || user.username %>
+      </h2>
 
-          <input type="file" name="pic" class="w-full border px-4 py-2 rounded-md bg-white" />
+      <p class="text-gray-500 text-sm">
+        @<%= user.username %>
+      </p>
 
-          <button type="submit"
-            class="w-full bg-red-600 text-white py-2 rounded-md font-semibold hover:bg-red-700 transition">
-            Submit
-          </button>
-        </form>
+      <p class="text-gray-600 text-sm mt-1">
+        <%= user.email %>
+      </p>
+
+      <!-- Stats -->
+      <div class="flex gap-6 mt-4 text-center">
+        <div>
+          <p class="font-semibold"><%= user.posts.length %></p>
+          <p class="text-xs text-gray-500">Pins</p>
+        </div>
       </div>
 
-      <!-- POSTS GRID -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-
-        <% user.posts.forEach((item)=> { %>
-          <div class="bg-white rounded-xl shadow-md overflow-hidden">
-
-            <img src="/images/uploads/<%= item.image %>" alt="Post Image" class="w-full h-56 object-cover" />
-
-            <div class="p-4">
-              <h5 class="text-center font-medium text-gray-800">
-                <%= item.postText %>
-              </h5>
-            </div>
-
-          </div>
-          <% }) %>
-
-      </div>
-
+      <!-- Action -->
+      <a href="/add"
+        class="mt-6 bg-red-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-red-700 transition">
+        Add Pin
+      </a>
     </div>
 
+    <!-- PINS PREVIEW -->
+    <% if(user.posts.length){ %>
+    <div>
+      <h3 class="text-lg font-semibold mb-4">Your Pins</h3>
+
+      <div class="columns-1 sm:columns-2 md:columns-3 gap-6">
+        <% user.posts.forEach((item) => { %>
+          <div class="mb-6 break-inside-avoid">
+            <a href="/show/pins/<%= item._id %>">
+              <img 
+                src="<%= item.image %>" 
+                class="w-full rounded-2xl shadow hover:shadow-xl transition"
+                alt="Pin"
+              />
+            </a>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+    <% } %>
+
   </div>
+</div>
 
 <script>
   const elem = document.getElementById("para");
@@ -80,8 +84,10 @@
   elem.addEventListener("click", () => {
     fileInput.click();
   });
+
   fileInput.addEventListener("change", () => {
-  document.getElementById("uploadForm").submit();
-});
+    document.getElementById("uploadForm").submit();
+  });
 </script>
-  <%- include('partials/footer') %>
+
+<%- include('partials/footer') %>

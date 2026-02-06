@@ -1,0 +1,70 @@
+<%- include('partials/header') %>
+
+<div class="min-h-screen bg-gray-100 flex items-center justify-center px-4 py-10">
+
+  <div class="bg-white max-w-xl w-full rounded-3xl shadow-xl p-8">
+
+    <!-- Header -->
+    <h2 class="text-2xl font-semibold text-gray-900 mb-6 text-center">
+      Create Pin
+    </h2>
+
+    <!-- Form -->
+    <form 
+      action="/createPosts" 
+      method="post" 
+      enctype="multipart/form-data"
+      class="space-y-5"
+    >
+
+      <!-- Caption -->
+      <input
+        type="text"
+        name="caption"
+        placeholder="Add a title"
+        class="w-full border border-gray-300 px-4 py-3 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-red-500"
+        required
+      />
+
+      <!-- Description -->
+      <textarea
+        name="description"
+        rows="3"
+        placeholder="Tell everyone what your pin is about"
+        class="w-full border border-gray-300 px-4 py-3 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-red-500"
+      ></textarea>
+
+      <!-- Image Upload -->
+      <div class="border-2 border-dashed border-gray-300 rounded-xl p-6 text-center hover:border-red-500 transition">
+        <input
+          type="file"
+          name="pic"
+          class="hidden"
+          id="fileUpload"
+          required
+        />
+        <label for="fileUpload" class="cursor-pointer">
+          <p class="text-sm text-gray-600">
+            Click to upload an image
+          </p>
+          <p class="text-xs text-gray-400 mt-1">
+            JPG, PNG only
+          </p>
+        </label>
+      </div>
+
+      <!-- Submit -->
+      <button
+        type="submit"
+        class="w-full bg-red-600 text-white py-3 rounded-full font-semibold hover:bg-red-700 transition"
+      >
+        Publish Pin
+      </button>
+
+    </form>
+
+  </div>
+
+</div>
+
+<%- include('partials/footer') %>
