@@ -45,10 +45,10 @@ router.post("/changeDp", upload.single("dp"), isLoggedIn, async (req, res) => {
   // console.log(user);
  
   const dpImage = req.file.path;
-  const cloudinaryImage = await uploadCloudinary(dpImage);
+  // const cloudinaryImage = await uploadCloudinary(dpImage);
 
 
-  user.dp =cloudinaryImage.url;
+  user.dp =dpImage;
   await user.save();
   res.redirect("/profile");
 });
