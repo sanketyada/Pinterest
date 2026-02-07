@@ -67,15 +67,20 @@ router.post(
     });
 
     const testImage = req.file.path;
-    const cloudinaryImage = await uploadCloudinary(testImage);
-    if (!cloudinaryImage) {
+
+
+    // console.log(testImage) link of cloudinary images
+    // // const cloudinaryImage = await uploadCloudinary(testImage);
+
+
+    if (!testImage) {
       res.status(404).send("Unable To uplaod the Image");
     }
 
     const newPost = await postModel.create({
       postText: req.body.caption,
       description: req.body.description,
-      image: cloudinaryImage.url,
+      image:testImage,
       user: findUser._id,
     });
 
